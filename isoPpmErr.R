@@ -26,9 +26,8 @@ isoPpmErr = function(mzs, mzdiff = 1.003355, charges = c(1,2,3,4,5,6)) {
     round(mzd * chg / mzdiff)
   })
   pmz.m3 = outer(mzd.m2, charges, function(mzd, chg) { # Predicted isotope mz based on base mass, charge, and number of carbons
-    cn = round(mzd * chg / mzdiff)
-    cn*mzdiff/chg
-  }) + peaks.y.m3
+    mzdiff/chg
+  })*cn.m3 + peaks.y.m3
   
   ppm.m3 = (pmz.m3 - peaks.z.m3) / pmz.m3 * 1E6
   
